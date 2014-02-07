@@ -61,4 +61,4 @@ add_filter('excerpt_more', '{%= prefix %}_replace_excerpt');
 
 /*Includes*/
 require_once 'includes/theme_options.php';
-require_once 'includes/theme_options.php';
+require_once 'includes/shortcodes.php';
