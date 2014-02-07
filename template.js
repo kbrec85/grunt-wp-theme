@@ -50,7 +50,7 @@ exports.template = function( grunt, init, done ) {
 			'grunt-contrib-cssmin': '~0.6.0',
 			'grunt-contrib-jshint': '~0.1.1',
 			'grunt-contrib-nodeunit': '~0.1.2',
-			'grunt-contrib-watch': '~0.2.0',
+			'grunt-contrib-watch': '~0.5.3',
 		};
 		
 		// Sanitize names where we need to for PHP/JS
@@ -87,7 +87,7 @@ exports.template = function( grunt, init, done ) {
 				delete files[ 'assets/css/less/' + props.js_safe_name + '.less'];
 				delete files[ 'assets/css/src/' + props.js_safe_name + '.css' ];
 				
-				props.devDependencies["grunt-contrib-compass"] = "~0.4.1";
+				props.devDependencies["grunt-contrib-compass"] = "~0.6.0";
 				props.css_type = 'compass';
 				break;
 			// SASS is the default
