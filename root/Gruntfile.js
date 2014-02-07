@@ -151,7 +151,10 @@ module.exports = function( grunt ) {
 				options: {
 					debounceDelay: 500
 				}
-			}
+			},
+			options: {
+        		livereload: true
+      		}
 		}
 	} );
 
