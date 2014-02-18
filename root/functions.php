@@ -23,6 +23,10 @@ define( '{%= prefix_caps %}_VERSION', '0.1.0' );
  function {%= prefix %}_scripts_styles() {
 	$postfix = ( defined( 'SCRIPT_DEBUG' ) && true === SCRIPT_DEBUG ) ? '' : '.min';
 
+  if (in_array($_SERVER['SERVER_ADDR'], array('127.0.0.1')) || pathinfo($_SERVER['SERVER_NAME'], PATHINFO_EXTENSION) == 'dev') {
+    wp_enqueue_script( 'livereload', '//localhost:35729/livereload.js', '', false, true );
+  }
+
 	wp_enqueue_script('jquery');
 
 	wp_enqueue_script( '{%= prefix %}', get_template_directory_uri() . "/assets/js/{%= js_safe_name %}{$postfix}.js", array(), {%= prefix_caps %}_VERSION, true );
@@ -61,4 +65,4 @@ add_filter('excerpt_more', '{%= prefix %}_replace_excerpt');
 
 /*Includes*/
 require_once 'includes/theme_options.php';
-require_once 'includes/theme_options.php';
+require_once 'includes/shortcodes.php';
