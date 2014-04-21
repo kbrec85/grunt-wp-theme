@@ -23,4 +23,8 @@
 <![endif]-->
 </head>
 <body <?php body_class(); ?>>
+<div itemscope itemtype="http://schema.org/Organization">
+	<a itemprop="url" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img itemprop="logo" src="http://www.example.com/logo.png" /></a>
+	<meta itemprop="name" content="<?php bloginfo('name');?>" />
+</div>
 <?php wp_nav_menu( array( 'theme_location' => 'header-menu', 'container' => false) ); ?>
