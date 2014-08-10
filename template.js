@@ -31,9 +31,9 @@ exports.template = function( grunt, init, done ) {
 		},
 		init.prompt( 'description', 'The best WordPress theme ever made!' ),
 		init.prompt( 'homepage', 'http://wordpress.org/themes' ),
-		init.prompt( 'author_name' ),
-		init.prompt( 'author_email' ),
-		init.prompt( 'author_url' ),
+		init.prompt( 'author_name', 'Kyle Breckenridge' ),
+		init.prompt( 'author_email', 'contact@kylebreckenridge.com' ),
+		init.prompt( 'author_url', 'http://www.kylebreckenridge.com' ),
 		{
 			name: 'css_type',
 			message: 'CSS Preprocessor: Will you use "Sass", "LESS", "Compass" or "none" for CSS with this project?',
@@ -52,7 +52,7 @@ exports.template = function( grunt, init, done ) {
 			'grunt-contrib-nodeunit': '~0.1.2',
 			'grunt-contrib-watch': '~0.5.3',
 		};
-		
+
 		// Sanitize names where we need to for PHP/JS
 		props.name = props.title.replace( /\s+/g, '-' ).toLowerCase();
 		// Development prefix (i.e. to prefix PHP function names, variables)
@@ -72,7 +72,7 @@ exports.template = function( grunt, init, done ) {
 			case 'l':
 				delete files[ 'assets/css/sass/' + props.js_safe_name + '.scss'];
 				delete files[ 'assets/css/src/' + props.js_safe_name + '.css' ];
-				
+
 				props.devDependencies["grunt-contrib-less"] = "~0.11.2";
 				props.css_type = 'less';
 				break;
@@ -80,13 +80,13 @@ exports.template = function( grunt, init, done ) {
 			case undefined:
 				delete files[ 'assets/css/less/' + props.js_safe_name + '.less'];
 				delete files[ 'assets/css/sass/' + props.js_safe_name + '.scss'];
-				
+
 				props.css_type = 'none';
 
 			case 'c':
 				delete files[ 'assets/css/less/' + props.js_safe_name + '.less'];
 				delete files[ 'assets/css/src/' + props.js_safe_name + '.css' ];
-				
+
 				props.devDependencies["grunt-contrib-compass"] = "~0.6.0";
 				props.css_type = 'compass';
 				break;
@@ -94,20 +94,20 @@ exports.template = function( grunt, init, done ) {
 			default:
 				delete files[ 'assets/css/less/' + props.js_safe_name + '.less'];
 				delete files[ 'assets/css/src/' + props.js_safe_name + '.css' ];
-				
+
 				props.devDependencies["grunt-contrib-sass"] = "~0.7.3";
 				props.css_type = 'sass';
 				break;
 		}
-		
+
 		console.log( files );
-		
+
 		// Actually copy and process files
 		init.copyAndProcess( files, props );
-		
+
 		// Generate package.json file
 		init.writePackageJSON( 'package.json', props );
-		
+
 		// Done!
 		done();
 	});
