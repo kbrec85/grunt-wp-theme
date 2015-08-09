@@ -40,7 +40,7 @@ module.exports = function( grunt ) {
 				options: {
 					jshintrc: '.gruntjshintrc'
 				}
-			}   
+			}
 		},
 		uglify: {
 			all: {
@@ -115,7 +115,7 @@ module.exports = function( grunt ) {
 			{% if ('sass' === css_type) { %}
 			sass: {
 				files: ['assets/css/sass/*.scss'],
-				tasks: ['sass', 'cssmin'],
+				tasks: ['sass', 'autoprefixer', 'cssmin'],
 				options: {
 					debounceDelay: 500
 				}
@@ -123,7 +123,7 @@ module.exports = function( grunt ) {
 			{% } else if ('compass' === css_type) { %}
 			compass: {
 				files: ['assets/css/sass/*.scss', 'assets/css/sass/partials/*.scss'],
-				tasks: ['compass', 'cssmin'],
+				tasks: ['compass', 'autoprefixer', 'cssmin'],
 				options: {
 					debounceDelay: 500
 				}
@@ -131,7 +131,7 @@ module.exports = function( grunt ) {
 			{% } else if ('less' === css_type) { %}
 			less: {
 				files: ['assets/css/less/*.less'],
-				tasks: ['less', 'cssmin'],
+				tasks: ['less', 'autoprefixer', 'cssmin'],
 				options: {
 					debounceDelay: 500
 				}
@@ -139,7 +139,7 @@ module.exports = function( grunt ) {
 			{% } else { %}
 			styles: {
 				files: ['assets/css/src/*.css'],
-				tasks: ['cssmin'],
+				tasks: ['autoprefixer', 'cssmin'],
 				options: {
 					debounceDelay: 500
 				}
@@ -156,17 +156,27 @@ module.exports = function( grunt ) {
         		livereload: true
       		}
 		}
+		//  AUTO PREFIXER
+	    autoprefixer: {
+	        options: {
+	            browsers: ['last 2 versions', 'ie 9'],
+	            //map: true
+	        },
+	        no_dest: {
+	            src: 'assets/css/global.css'
+	        },
+	    },
 	} );
 
 	// Default task.
 	{% if ('sass' === css_type) { %}
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'sass', 'cssmin'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'sass', 'autoprefixer', 'cssmin'] );
 	{% } else if ('less' === css_type) { %}
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'cssmin'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'less', 'autoprefixer', 'cssmin'] );
 	{% } else if ('compass' === css_type) { %}
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'cssmin'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'compass', 'autoprefixer', 'cssmin'] );
 	{% } else { %}
-	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin'] );
+	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'autoprefixer', 'cssmin'] );
 	{% } %}
 
 	grunt.util.linefeed = '\n';

@@ -43,14 +43,15 @@ exports.template = function( grunt, init, done ) {
 		props.keywords = [];
 		props.version = '0.1.0';
 		props.devDependencies = {
-			'grunt': '~0.4.1',
-			'matchdep': '~0.1.2',
-			'grunt-contrib-concat': '~0.1.2',
-			'grunt-contrib-uglify': '~0.1.1',
-			'grunt-contrib-cssmin': '~0.6.0',
-			'grunt-contrib-jshint': '~0.1.1',
-			'grunt-contrib-nodeunit': '~0.1.2',
-			'grunt-contrib-watch': '~0.5.3',
+			'grunt': '>=0.4.1',
+			'matchdep': '>=0.1.2',
+			'grunt-contrib-concat': '>=0.1.2',
+			'grunt-contrib-uglify': '>=0.1.1',
+			'grunt-contrib-cssmin': '>=0.6.0',
+			'grunt-contrib-jshint': '>=0.1.1',
+			'grunt-contrib-nodeunit': '>=0.1.2',
+			'grunt-contrib-watch': '>=0.5.3',
+			"grunt-autoprefixer": "~2.2.0",
 		};
 
 		// Sanitize names where we need to for PHP/JS
@@ -73,7 +74,7 @@ exports.template = function( grunt, init, done ) {
 				delete files[ 'assets/css/sass/' + props.js_safe_name + '.scss'];
 				delete files[ 'assets/css/src/' + props.js_safe_name + '.css' ];
 
-				props.devDependencies["grunt-contrib-less"] = "~0.11.2";
+				props.devDependencies["grunt-contrib-less"] = ">=0.11.2";
 				props.css_type = 'less';
 				break;
 			case 'n':
@@ -87,7 +88,7 @@ exports.template = function( grunt, init, done ) {
 				delete files[ 'assets/css/less/' + props.js_safe_name + '.less'];
 				delete files[ 'assets/css/src/' + props.js_safe_name + '.css' ];
 
-				props.devDependencies["grunt-contrib-compass"] = "~0.6.0";
+				props.devDependencies["grunt-contrib-compass"] = ">=0.6.0";
 				props.css_type = 'compass';
 				break;
 			// SASS is the default
@@ -95,7 +96,7 @@ exports.template = function( grunt, init, done ) {
 				delete files[ 'assets/css/less/' + props.js_safe_name + '.less'];
 				delete files[ 'assets/css/src/' + props.js_safe_name + '.css' ];
 
-				props.devDependencies["grunt-contrib-sass"] = "~0.7.3";
+				props.devDependencies["grunt-contrib-sass"] = ">=0.7.3";
 				props.css_type = 'sass';
 				break;
 		}
