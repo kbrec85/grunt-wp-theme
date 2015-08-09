@@ -155,7 +155,7 @@ module.exports = function( grunt ) {
 			options: {
         		livereload: true
       		}
-		}
+		},
 		//  AUTO PREFIXER
 	    autoprefixer: {
 	        options: {
